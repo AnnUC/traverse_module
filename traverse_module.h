@@ -1,6 +1,5 @@
 #ifndef TRAVERSE_MODULE_H
 #define TRAVERSE_MODULE_H
-#endif
 
 #include "usr-spinlock.h"
 
@@ -32,6 +31,7 @@ typedef struct malloc_chunk* mchunkptr;
  /* The corresponding bit mask value */
 #define MALLOC_ALIGN_MASK      (MALLOC_ALIGNMENT - 1)
 
+
 #ifndef offsetof
 # define offsetof(type,ident) ((size_t)&(((type*)0)->ident))
 #endif
@@ -60,6 +60,12 @@ typedef struct malloc_chunk *mbinptr;
 /* The maximum fastbin request size we support */
 #define MAX_FAST_SIZE     (80 * SIZE_SZ / 4)
 #define NFASTBINS  (fastbin_index (request2size (MAX_FAST_SIZE)) + 1)
+
+#define NBINS             128
+
+#define BINMAPSHIFT      5
+#define BITSPERMAP       (1U << BINMAPSHIFT)
+#define BINMAPSIZE       (NBINS / BITSPERMAP)
 
 #define fastbin(ar_ptr, idx) ((ar_ptr)->fastbinsY[idx])
 
@@ -126,7 +132,7 @@ typedef struct free_chunk_info {
   
   size_t len; // size of the free chunk
 } free_chunk_info_t;
-typedef struct free_chunk_info *free_chunk_info_ptr;
+typedef struct free_chunk_info_t *free_chunk_info_ptr;
 
 
 
