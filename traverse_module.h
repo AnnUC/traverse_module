@@ -139,7 +139,7 @@ typedef struct free_chunk_info {
 
   struct free_chunk_info * next;
 } free_chunk_info_t;
-typedef struct free_chunk_info_t *free_chunk_info_ptr;
+typedef struct free_chunk_info *free_chunk_info_ptr;
 
 
 
