@@ -28,8 +28,8 @@ void add_free_chunk(free_chunk_info_ptr *free_chunk_info_head_ptr, free_chunk_in
     *free_chunk_info_head_ptr = *free_chunk_info_current_ptr = (free_chunk_info_ptr)malloc(sizeof(free_chunk_info_t));
   } else
   {
-    //(*free_chunk_info_current_ptr)->next = (free_chunk_info_ptr)kmalloc(sizeof(free_chunk_info), GFP_KERNEL);
-    (*free_chunk_info_current_ptr)->next = (free_chunk_info_ptr)malloc(sizeof(free_chunk_info));
+    //(*free_chunk_info_current_ptr)->next = (free_chunk_info_ptr)kmalloc(sizeof(free_chunk_info_t), GFP_KERNEL);
+    (*free_chunk_info_current_ptr)->next = (free_chunk_info_ptr)malloc(sizeof(free_chunk_info_t));
     (*free_chunk_info_current_ptr) = (*free_chunk_info_current_ptr)->next;
   }
   (*free_chunk_info_current_ptr)->chunk_start_ptr = *p_ptr;

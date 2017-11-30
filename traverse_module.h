@@ -77,6 +77,10 @@ typedef struct malloc_chunk *mbinptr;
 
 typedef struct malloc_chunk *mfastbinptr;
 
+#define PREV_INUSE 0x1
+#define IS_MMAPPED 0x2
+#define NON_MAIN_ARENA 0x4
+
 struct malloc_state
 {
   /* Serialize access.  */
