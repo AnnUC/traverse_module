@@ -136,6 +136,6 @@ typedef struct free_chunk_info_t *free_chunk_info_ptr;
 
 
 
-free_chunk_info* traverse (void* arena_start_ptr, size_t VpageNO, size_t* len);
-free_chunk_info* traverse_func (void* arena_start_ptr, size_t VpageNO, size_t* len);
+free_chunk_info_t* traverse (void* arena_start_ptr, size_t VpageNO, size_t* len);
+free_chunk_info_t* traverse_func (void* arena_start_ptr, size_t VpageNO, size_t* len);
 #endif

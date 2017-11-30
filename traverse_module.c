@@ -46,7 +46,7 @@ void add_free_chunk(free_chunk_info_ptr *free_chunk_info_head_ptr, free_chunk_in
     pointer to the free chunk list 
  */
 
-free_chunk_info* traverse (void* arena_start_ptr, size_t VpageNO, size_t* len) 
+free_chunk_info_t* traverse (void* arena_start_ptr, size_t VpageNO, size_t* len) 
 {
   mstate av = (mstate)arena_start_ptr;
   free_chunk_info_ptr free_chunk_info_head = NULL;
