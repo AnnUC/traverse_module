@@ -32,7 +32,7 @@ void add_free_chunk(free_chunk_info_ptr *free_chunk_info_head_ptr, free_chunk_in
   }
   (*free_chunk_info_current_ptr)->chunk_start_ptr = *p_ptr;
   (*free_chunk_info_current_ptr)->len = chunksize(*p_ptr); // size of the data chunk (including header and mem)
-  (*free_chunk_info_current_ptr)->next = NULL；
+  (*free_chunk_info_current_ptr)->next = NULL;
   (*num)++;
 }
 
@@ -52,6 +52,7 @@ free_chunk_info* traverse (void* arena_start_ptr, size_t VpageNO, size_t* len)
   free_chunk_info_ptr free_chunk_info_head = NULL;
   free_chunk_info_ptr free_chunk_info_current = NULL;
   mchunkptr p;
+  int i;
 
   // traverse fast bins 
   for (i = 0; i < NFASTBINS; ++i) { 

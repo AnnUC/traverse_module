@@ -2,6 +2,10 @@
 #define _USR_SPINLOCK_H
 #endif
 
+#define _GNU_SOURCE
+#include <unistd.h>
+#include <sys/types.h>  
+
 typedef struct {
     volatile unsigned int lock;
     volatile pid_t thread_id;
