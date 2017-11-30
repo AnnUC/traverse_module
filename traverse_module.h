@@ -1,5 +1,7 @@
 #ifndef TRAVERSE_MODULE_H
 #define TRAVERSE_MODULE_H
+#endif
+
 #include <usr-spinlock.h>
 
 #ifndef INTERNAL_SIZE_T
