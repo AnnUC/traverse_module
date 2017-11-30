@@ -11,7 +11,7 @@
 int inside_the_page(mchunkptr p ,size_t VpageNO) 
 {
   // return true if the chunk is inside the virtual page
-  if ((（int64_t）p >> 12) == VpageNO)
+  if (((int64_t)p >> 12) == VpageNO)
   {
     return 1;
   } else 
