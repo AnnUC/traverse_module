@@ -11,7 +11,7 @@
 int inside_the_page(mchunkptr p ,size_t VpageNO) 
 {
   // return true if the chunk is inside the virtual page
-  if ((p >> 12) == VpageNO)
+  if ((（int64_t）p >> 12) == VpageNO)
   {
     return 1;
   } else 
@@ -24,7 +24,7 @@ void add_free_chunk(free_chunk_info_ptr *free_chunk_info_head_ptr, free_chunk_in
 {
   if (free_chunk_info_head_ptr == NULL)
   {
-    *free_chunk_info_head_ptr = *free_chunk_info_current_ptr = (free_chunk_info_ptr)malloc(sizeof(free_chunk_info), GFP_KERNEL);
+    *free_chunk_info_head_ptr = *free_chunk_info_current_ptr = (free_chunk_info_ptr)malloc(sizeof(free_chunk_info_t), GFP_KERNEL);
   } else
   {
     (*free_chunk_info_current_ptr)->next = (free_chunk_info_ptr)malloc(sizeof(free_chunk_info), GFP_KERNEL);

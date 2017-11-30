@@ -2,6 +2,7 @@
 #define TRAVERSE_MODULE_H
 
 #include "usr-spinlock.h"
+#include <stdlib.h>
 
 #ifndef INTERNAL_SIZE_T
 #define INTERNAL_SIZE_T size_t
