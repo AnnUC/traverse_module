@@ -5,66 +5,18 @@
 //MODULE_LICENSE("GPL");
 
 
-#ifndef INTERNAL_SIZE_T
-#define INTERNAL_SIZE_T size_t
-#endif
-
-/* The corresponding word size */
-#define SIZE_SZ                (sizeof(INTERNAL_SIZE_T))
-
-#ifndef MALLOC_ALIGNMENT
-#define MALLOC_ALIGNMENT       (2 *SIZE_SZ)
-#endif
-
- /* The corresponding bit mask value */
-#define MALLOC_ALIGN_MASK      (MALLOC_ALIGNMENT - 1)
-
-#ifndef offsetof
-# define offsetof(type,ident) ((size_t)&(((type*)0)->ident))
-#endif
-
-/* The smallest possible chunk */
-#define MIN_CHUNK_SIZE        (offsetof(struct malloc_chunk, fd_nextsize))
-
-/* The smallest size we can malloc is an aligned minimal chunk */
-
-#define MINSIZE  \
-  (unsigned long)(((MIN_CHUNK_SIZE+MALLOC_ALIGN_MASK) & ~MALLOC_ALIGN_MASK))
-
-#define request2size(req)                                         \
-  (((req) + SIZE_SZ + MALLOC_ALIGN_MASK < MINSIZE)  ?             \
-   MINSIZE :                                                      \
-   ((req) + SIZE_SZ + MALLOC_ALIGN_MASK) & ~MALLOC_ALIGN_MASK)
-
-#define fastbin_index(sz) \
-  ((((unsigned int) (sz)) >> (SIZE_SZ == 8 ? 4 : 3)) - 2)
-
-typedef struct malloc_chunk *mbinptr;
-#define bin_at(m, i) \
-  (mbinptr) (((char *) &((m)->bins[((i) - 1) * 2]))           \
-             - offsetof (struct malloc_chunk, fd))  
-
-/* The maximum fastbin request size we support */
-#define MAX_FAST_SIZE     (80 * SIZE_SZ / 4)
-#define NFASTBINS  (fastbin_index (request2size (MAX_FAST_SIZE)) + 1)
-
-#define fastbin(ar_ptr, idx) ((ar_ptr)->fastbinsY[idx])
-
-#define SIZE_BITS (PREV_INUSE | IS_MMAPPED | NON_MAIN_ARENA)
-
-/* Get size, ignoring use bits */
-#define chunksize(p)         ((p)->size & ~(SIZE_BITS))
 
 
-bool inside_the_page(mchunkptr p ,size_t VpageNO) 
+
+int inside_the_page(mchunkptr p ,size_t VpageNO) 
 {
   // return true if the chunk is inside the virtual page
-  if ((p >> 12) == VpageNO) //double check???
+  if ((p >> 12) == VpageNO)
   {
-    return true;
+    return 1;
   } else 
   {
-    return false;
+    return 0;
   }
 }
 
@@ -93,10 +45,7 @@ void add_free_chunk(free_chunk_info_ptr *free_chunk_info_head_ptr, free_chunk_in
    output:
     pointer to the free chunk list 
  */
-free_chunk_info* traverse_func (void* arena_start_ptr, size_t VpageNO, size_t* len) 
-{
 
-}
 free_chunk_info* traverse (void* arena_start_ptr, size_t VpageNO, size_t* len) 
 {
   mstate av = (mstate)arena_start_ptr;
