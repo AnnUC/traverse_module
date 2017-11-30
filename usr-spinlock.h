@@ -4,7 +4,8 @@
 
 #define _GNU_SOURCE
 #include <unistd.h>
-#include <sys/types.h>  
+#include <sys/types.h> 
+#include <sys/syscall.h> 
 
 typedef struct {
     volatile unsigned int lock;
