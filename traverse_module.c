@@ -91,3 +91,7 @@ free_chunk_info_t* traverse (void* arena_start_ptr, size_t VpageNO, size_t* len)
   }
   return free_chunk_info_head;
 }
+
+int main() {
+  traverse(NULL,0,NULL);
+}
