@@ -136,6 +136,8 @@ typedef struct free_chunk_info {
   void* start; // pointer to the beginning of a free chunk, containing the (header+data)
   
   size_t len; // size of the free chunk
+
+  struct free_chunk_info * next;
 } free_chunk_info_t;
 typedef struct free_chunk_info_t *free_chunk_info_ptr;
 
