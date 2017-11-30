@@ -32,7 +32,7 @@ void add_free_chunk(free_chunk_info_ptr *free_chunk_info_head_ptr, free_chunk_in
     (*free_chunk_info_current_ptr)->next = (free_chunk_info_ptr)malloc(sizeof(free_chunk_info_t));
     (*free_chunk_info_current_ptr) = (*free_chunk_info_current_ptr)->next;
   }
-  (*free_chunk_info_current_ptr)->chunk_start_ptr = *p_ptr;
+  (*free_chunk_info_current_ptr)->start = *p_ptr;
   (*free_chunk_info_current_ptr)->len = chunksize(*p_ptr); // size of the data chunk (including header and mem)
   (*free_chunk_info_current_ptr)->next = NULL;
   (*num)++;
