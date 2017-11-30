@@ -68,7 +68,7 @@ free_chunk_info_t* traverse (void* arena_start_ptr, size_t VpageNO, size_t* len)
   }
 
   // traverse regular bins 
-  malloc_chunk* b;
+  mchunkptr b;
   for (i = 1; i < NBINS; ++i) {
     b = bin_at (av, i); //
     for (p = (b)->bk; p != b; p = p->bk) { 
@@ -81,7 +81,7 @@ free_chunk_info_t* traverse (void* arena_start_ptr, size_t VpageNO, size_t* len)
   }
 
   //get top chunk
-  malloc_chunk* top_addr = av->top;
+  mchunkptr top_addr = av->top;
   if (inside_the_page(top_addr, VpageNO))
   {
     if (inside_the_page(p, VpageNO))
